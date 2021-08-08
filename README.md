@@ -20,6 +20,7 @@ Ominaisuuksia:
     - Ryhmä voi olla joko avoin, jolloin se näkyy kaikille käyttäjille tai suljettu, jolloin se näkyy ja sinne pääsevät vain henkilöt, jotka hallitsija ryhmään hallitsija oikeudet sinne päästää
 
  - Käyttäjiin liittyen
+    - Käyttäjä voi kirjautua ulos/sisään 
     - Kuvien jakaminen vaatii käyttäjä tunnuksen
     - Jokaisella käyttäjällä on nimike sekä tunnus, nimikkeen ei tarvitse olla uniikki, mutta tunnuksen tarvitsee olla
  
