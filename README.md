@@ -1,6 +1,6 @@
 # Kuvien jako sovellus
 
-![https://calm-bayou-52457.herokuapp.com/]Link
+!https://calm-bayou-52457.herokuapp.com/
 
 ## Kuvaus
 
