@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
+<h2>Kirjautuminen</h2>
+<form action="/new" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username"> <br>
+    <label for="user_id">Unique ID</label>
+    <input type="text" name="user_id"> <br>
+    <label for="password">Password</label>
+    <input type="password" name="password"> <br>
+    <label for="repeat password">Repeat Password</label>
+    <input type="password" name="repeat password"> <br>
+    <input type="submit" value="Create account">
+</form>
+{% endblock %}

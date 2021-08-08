@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/static/css/posts.css">
+
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+
+<h2>Front page</h2>
+<p>
+    Welcome to the app
+    {% if session.username %}
+    You are logged in as {{ session.username }}
+    {% endif %}
+</p>
+
+<h3>Most popular</h3>
+{% for id, group in groups %}
+<div class="postDiv">
+  <a href="/group{{ id }}">{{ group }}</a>
+</div>
+{% endfor %}
+
+{% endblock %}

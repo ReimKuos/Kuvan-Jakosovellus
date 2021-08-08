@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/static/css/posts.css">
+
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+
+<h1>{{ name }}</h1>
+<p>
+    {{ description }}<br><br>
+    {% if session.username %}
+    <a href="/group{{ group_id }}/create-post">Create post</a>
+    {% endif %}
+</p>
+
+<h3>Posts</h3>
+{% for id, post in posts %}
+<div class="imageDiv">
+  <a href="/group{{ group_id }}/post{{ id }}">{{ post }}</a><br>
+  <img src="/image/{{ id }}">
+</div>
+{% endfor %}
+
+{% endblock %}
