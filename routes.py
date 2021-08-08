@@ -78,7 +78,7 @@ def group_create():
 def group(id):
     group_info = get_group_info(id)
     posts = get_posts_in_group(id)
-    return render_template("group.html", posts=posts, name=group_info, description=group_info, group_id=id)
+    return render_template("group.html", posts=posts, name=group_info[0], description=group_info[1], group_id=id)
 
 
 @app.route("/group<int:group>/create-post")

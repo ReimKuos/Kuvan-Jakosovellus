@@ -61,5 +61,3 @@ def give_group_priviledges(group_id: int, user_id: int):
         return True
     except:
         return False
-
-create_group(12, True, "test", "Just a group")

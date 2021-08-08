@@ -8,4 +8,4 @@ def get_user_id(user_id: str):
 def get_group_info(group_id: int):
     sql = "SELECT group_name, description, num_posts FROM groups WHERE id=:group_id"
     name = db.session.execute(sql, {"group_id": group_id})
-    return name.fetchone()[0]
+    return name.fetchone()
