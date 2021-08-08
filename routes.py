@@ -11,8 +11,8 @@ from posts import create_new_post, save_image, get_image
 
 @app.route("/")
 def index():
-    groups_by_time = get_groups_by_time()
-    return render_template("index.html", groups=groups_by_time)
+    #groups_by_time = get_groups_by_time()
+    return render_template("index.html", groups=[])
 
 
 @app.route("/login")
