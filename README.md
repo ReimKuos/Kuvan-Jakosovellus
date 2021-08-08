@@ -30,4 +30,11 @@ Ominaisuuksia:
 
 ## Tämän hetkinen toiminnallisuus
 
-Ei ollenkaan
+- Käyttäjä tunnuksen voi luoda
+- Ryhmän voi luoda
+- kuvia voi laittaa ryhmiin
+
+## Puutteellisuus
+
+- !!!Mitään ei voi poistaa!!!
+- Error checking ja input feedback toimintoja ei ole
