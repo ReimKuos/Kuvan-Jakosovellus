@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/static/css/main.css">
+
+{% extends "layout.html" %}
+{% block title %}{{ name }}{% endblock %}
+{% block content %}
+
+<h1>{{ name }}</h1>
+
+<div class="imageDiv">
+    <img src="/image/{{ id }}">
+</div>
+
+{% if session.username %}
+<h3>Leave a comment</h3>
+<form action="/comment/{{ group }}/{{ id }}" method="POST">
+    <label for="comment">Comment</label>
+    <textarea type="comment" name="comment" rows="5" cols="85"></textarea>
+    <input type="submit" value="Leave comment">
+</form>
+{% endif %}
+
+{% for id, commenter, text, creator in comments %}
+<h5>By {{ creator }}</h5>
+{{ text }}
+<br><br>
+{% endfor %}
+
+{% endblock %}
