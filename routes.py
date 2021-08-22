@@ -7,7 +7,7 @@ from search import get_posts_in_group
 from groups import create_group, check_group_existance
 from utility import get_user_id, get_group_info
 from posts import create_new_post, save_image, get_image
-
+from comments import get_comments, add_comment
 
 @app.route("/")
 def index():
@@ -27,11 +27,11 @@ def new():
     password = request.form["password"]
     repeat = request.form["repeat password"]
     if repeat != password:
-        return redirect("/login")
+        return "Repeat password didn't match (This a temporary error message style)"
     if create_new_user(username, user_id, password):
         session["username"] = user_id
         return redirect("/")
-    return redirect("/login")
+    return "Some error occurred during database insertion (This a temporary error message style)"
 
 
 @app.route("/sign-in")
@@ -46,7 +46,7 @@ def old():
     if sign_in(user_id, password):
         session["username"] = user_id
         return redirect("/")
-    return redirect("/sign-in")
+    return "Incorrect password/user ID (This a temporary error message style)"
 
 
 @app.route("/logout")
@@ -65,13 +65,13 @@ def group_creator():
 def group_create():
     group_name = request.form["group_name"]
     if check_group_existance(group_name):
-        return redirect("/create-group")
+        return "Group with this name already exists (This a temporary error message style)"
     public = "A" not in request.form.getlist("public")
     description = request.form["description"]
     creator_id = get_user_id(session["username"])
     if create_group(creator_id, public, group_name, description):
         return redirect("/")
-    return redirect("/create-group")
+    return "Some error occurred during database insertion (This a temporary error message style)"
 
 
 @app.route("/group<int:id>")
@@ -91,16 +91,25 @@ def post_create(group):
     file = request.files["picture"]
     picture = save_image(file)
     if picture is None:
-        return redirect(f"/group{group}/create-post") 
+        return "image could't be saved or it's file fromat was not JPG (This a temporary error message style)"
     title = request.form["title"]
     if create_new_post(get_user_id(session["username"]), group, title, picture):
         return redirect(f"/group{group}")
-    return redirect(f"/group{group}/create-post")
+    return "Some error occurred during database insertion (This a temporary error message style)"
 
 @app.route("/group<int:group>/post<int:id>")
 def post(group, id):
-    return redirect(f"/group{group}")
+    comments = get_comments(id)
+    print(comments)
+    return render_template("post.html", name="Hello", id=id, group=group, comments=comments)
 
+@app.route("/comment/<int:group_id>/<int:post_id>", methods=["POST"])
+def comment(group_id, post_id):
+    user_id = get_user_id(session["username"])
+    comment = request.form["comment"]
+    if add_comment(user_id, post_id, comment):
+        return redirect(f"/group{group_id}/post{post_id}")
+    return "An error occurred and comment was not created!"
 
 @app.route("/image/<int:id>")
 def image(id):
