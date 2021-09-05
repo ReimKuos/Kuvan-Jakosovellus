@@ -9,7 +9,7 @@
 <p>
     {{ description }}<br><br>
     {% if session.username %}
-    <a href="/group{{ group_id }}/create-post">Create post</a>
+    <a href="/group{{ group_id }}/create-post:error=None">Create post</a>
     {% endif %}
 </p>
 
@@ -17,7 +17,7 @@
 {% for id, post in posts %}
 <div class="imageDiv">
   <a href="/group{{ group_id }}/post{{ id }}">{{ post }}</a><br>
-  <img src="/image/{{ id }}">
+  <img src="/image/{{ id }}"><br>
 </div>
 {% endfor %}
 

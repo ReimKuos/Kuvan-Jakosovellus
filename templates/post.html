@@ -8,7 +8,10 @@
 <h1>{{ name }}</h1>
 
 <div class="imageDiv">
-    <img src="/image/{{ id }}">
+    <br><img src="/image/{{ id }}"><br>
+    {% if session.username %}
+    <a href="{{ liked }}">{{ token }}</a>
+    {% endif %}
 </div>
 
 {% if session.username %}
@@ -17,6 +20,7 @@
     <label for="comment">Comment</label>
     <textarea type="comment" name="comment" rows="5" cols="85"></textarea>
     <input type="submit" value="Leave comment">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% endif %}
 
