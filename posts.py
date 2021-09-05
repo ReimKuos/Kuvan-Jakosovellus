@@ -1,4 +1,3 @@
-from werkzeug import datastructures
 from db import db
 
 def create_new_post(creator_id: int, group_id: int, post_title: str, picture):
