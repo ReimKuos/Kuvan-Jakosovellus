@@ -16,7 +16,7 @@ Ominaisuuksia:
  - Ryhmiin liittyen
     - Kuka tahansa voi aloittaa uuden ryhmän
     - kuka tahansa voi laittaa kuvia ryhmään
-    - aloitus sivulla voi nähdä kaikki ryhmät, jotka voi järjestää ajan, aktiivisuuden, tai sen kuvien keskimääräisen suosion mukaan
+    - aloitus sivulla voi nähdä kaikki ryhmät, jotka voi järjestää ajan, aktiivisuuden, tai sen kuvien suosion mukaan
 
  - Käyttäjiin liittyen
     - Käyttäjä voi kirjautua ulos/sisään 
