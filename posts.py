@@ -12,12 +12,10 @@ def create_new_post(creator_id: int, group_id: int, post_title: str, picture):
 def save_image(picture):
     name = picture.filename
     if  not name.endswith(".jpg"):
-        print("NOT JPG")
-        return None
+        return "Photo must be in jpg fromat"
     data = picture.read()
     if len(data) > 1920*1080:
-        print("TWO BIG")
-        return None
+        return "Photo size too big"
     return data
 
 def get_image(post_id):
