@@ -27,11 +27,6 @@ CREATE TABLE posts (
     picture BYTEA
 );
 
-CREATE TABLE banned_members (
-    banned_from_id INTEGER,
-    banned_id INTEGER,
-    state BOOLEAN
-);
 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
