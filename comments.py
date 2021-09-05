@@ -1,8 +1,8 @@
 from db import db
 
 def add_comment(commenter_id, commented_id, comment):
-    sql = "INSERT INTO comments (comment_on_post, visible, removed, commenter_id, commented_id, comment)" \
-          "VALUES (TRUE, TRUE, FALSE, :commenter_id, :commented_id, :comment)"
+    sql = "INSERT INTO comments (visible, commenter_id, commented_id, comment)" \
+          "VALUES (TRUE, :commenter_id, :commented_id, :comment)"
     try:
         db.session.execute(sql, {
             "commenter_id": commenter_id,

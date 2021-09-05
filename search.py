@@ -1,12 +1,19 @@
 from db import db
-from flask import make_response
 
+def get_groups_by_time():
+    sql = "SELECT id, group_name FROM groups WHERE visible ORDER BY creation_time DESC"
+    groups = db.session.execute(sql)
+    return groups.fetchall()
 
-def get_groups_by_time(reverse = False):
-    if reverse:
-        sql = "SELECT id, group_name FROM groups WHERE visible=TRUE AND public=TRUE ORDER BY creation_time DESC"
-    else:
-        sql = "SELECT id, group_name FROM groups WHERE visible=TRUE AND public=TRUE ORDER BY creation_time"
+def get_groups_by_popularity():
+    sql = "SELECT G.id, G.group_name FROM groups G WHERE G.visible ORDER BY " \
+          "(SELECT COUNT(P.id) FROM posts P FULL OUTER JOIN likes L ON L.post_id=P.id WHERE P.group_id=G.id AND L.active) DESC"
+    groups = db.session.execute(sql)
+    return groups.fetchall()
+
+def get_groups_by_activity():
+    sql = "SELECT G.id, G.group_name FROM groups G WHERE G.visible ORDER BY " \
+          "(SELECT COUNT(P.id) FROM posts P WHERE P.group_id=G.id) DESC"
     groups = db.session.execute(sql)
     return groups.fetchall()
 
@@ -17,21 +24,8 @@ def get_groups_by_creator(creator_id: int):
     return groups.fetchall()
 
 
-def get_groups_by_membership(member_id: int):
-    sql = "SELECT id, group_name FROM groups WHERE visible=TRUE AND group id IN" \
-          "(SELECT group_id FROM members WHERE member_id=:member_id)"
-    groups = db.session.execute(sql, {"member_id": member_id})
-    return groups.fetchall()
-
-
-def get_adminastrated_groups(adm_id: int):
-    sql = "SELECT id, group_name FROM groups WHERE visible=TRUE AND group id IN" \
-          "(SELECT group_id FROM adminastrators WHERE adminastrator_id=:adm_id)"
-    groups = db.session.execute(sql, {"adm_id": adm_id})
-    return groups.fetchall()
-
-
 def get_posts_in_group(group_id: int):
     sql = "SELECT id, post_title FROM posts WHERE group_id=:group_id AND visible"
     results = db.session.execute(sql, {"group_id": group_id})
-    return results
+    return results.fetchall()
+

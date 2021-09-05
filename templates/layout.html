@@ -7,10 +7,10 @@
     <ul>
         <li><a href="/">Front page</a></li>
         {% if session.username %}
-        <li><a href="/logout">Log out</a></li>
-        <li><a href="/create-group">Create Group</a></li>
+        <li><a href="/logout:error=None">Log out</a></li>
+        <li><a href="/create-group:error=None">Create Group</a></li>
         {% else %}
-        <li><a href="/sign-in">Log in</a></li> 
+        <li><a href="/sign-in:error=None">Log in</a></li> 
         {% endif %}
     </ul>
 

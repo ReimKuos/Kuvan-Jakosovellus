@@ -10,7 +10,16 @@
     Welcome to the app
     {% if session.username %}
     You are logged in as {{ session.username }}
+    <br>
+    <a href="/mine">My groups</a>
     {% endif %}
+    <br>
+    <br>
+    Order By
+    <br>
+    <a href="/">Time</a> -
+    <a href="/order:popularity">Popularity</a> - 
+    <a href="/order:activity">Activity</a>
 </p>
 
 <h3>Most popular</h3>
