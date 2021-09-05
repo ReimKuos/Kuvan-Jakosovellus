@@ -4,18 +4,17 @@ def check_group_existance(group_name: str):
     sql = "SELECT id FROM groups WHERE group_name=:group_name"
     check = db.session.execute(sql, {"group_name": group_name})
     check = check.fetchall()
-    if check is None:
+    if check is not None:
         return True
     return False 
 
 
-def create_group(creator_id: int, public: bool, group_name: str, description: str):
-    sql = "INSERT INTO groups (creator_id, creation_time, public, visible, group_name, description, num_posts)" \
-          "VALUES (:creator_id, NOW(), :public, TRUE, :group_name, :description, 0)"
+def create_group(creator_id: int, group_name: str, description: str):
+    sql = "INSERT INTO groups (creator_id, creation_time, visible, group_name, description)" \
+          "VALUES (:creator_id, NOW(), TRUE, :group_name, :description)"
     try:
         db.session.execute(sql, {
             "creator_id": creator_id,
-            "public": public,
             "group_name": group_name,
             "description": description
         })
